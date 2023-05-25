@@ -2,9 +2,10 @@
 <details>
   <summary>Table of Contents</summary>
 
-  1. [Overview](#overview)
-  2. [Integrate ChatGPT within Slack](#Integrate-ChatGPT-within-Slack)
-  3. [Example](#Example)
+1. [Overview](#overview)
+2. [Integrate ChatGPT within Slack](#integrate-chatgpt-within-slack)
+3. [Integrate Python within Slack](#integrate-python-within-slack)
+4. [Example](#example)
 
 </details>
 
@@ -84,5 +85,48 @@ if __name__ == "__main__":
     SocketModeHandler(app, SLACK_APP_TOKEN).start()
 ```
 
-Step 5: Test out
+## Integrate Python within Slack
+
+Step 1: Create a Slack App & Install It
+
+Add the following bot token scopes: channels:history, channels:read, groups:history, im:history, mpim:history, channels:join.
+
+Install the app in your workspace
+
+Step 2: Writing the Code
+```python
+import slack_sdk
+
+# Your bot user token, which you saved when you installed the app
+bot_token = 'xoxb-XXXX-XXXX'
+
+# Initialize a Web API client
+slack_client = slack_sdk.WebClient(token=bot_token)
+
+# Specify the ID of the channel you want to grab text from
+channel_id = 'CXXXXXXXX'
+
+# Call the conversations.history method using the WebClient
+result = slack_client.conversations_history(channel=channel_id)
+
+# Get only messages from the response (excluding other types like user joins, etc.)
+messages = [message for message in result.data['messages'] if message.get('type') == 'message' and 'subtype' not in message]
+
+# Print each message
+for message in messages:
+    print(message['text'])
+
+```
+This script connects to the Slack API, grabs the history of a specified channel, and prints out each message.
+
+Once you have your Slack App installed in your workspace and the Python script ready, you can run your script to start collecting messages from the specified channel.
+
+
 ## Example
+Slack Channel: #sales 
+
+Post: 
+
+I’m XX XX from abc Corp. we are interested in your product. We like to get basic info. Then we like to schedule a demo. Kindly reach out to us at oooooo@oooooo.com 
+
+Thanks, XX
