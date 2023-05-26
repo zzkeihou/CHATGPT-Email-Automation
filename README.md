@@ -36,7 +36,9 @@ pip install slack-bolt
 pip install slack-sdk
 ```
 Step 4: Writing the Python script
-The following is a script which listens for mentions of your bot in a channel, then sends the text of the message to ChatGPT to generate a response, and finally sends the generated message back to the channel:
+The following is a script which listens for mentions of your bot in a channel, then sends the text of the message to ChatGPT to generate a response, and finally sends the generated message back to the channel.
+
+(Please replace "YOUR_TOKEN" with your actual tokens for the Slack bot token, the Slack app token, and the OpenAI API key.).To run the code, open the chatgpt_slack.py file.:
 ```python
 SLACK_BOT_TOKEN = "YOUR_TOKEN"
 SLACK_APP_TOKEN = "YOUR_TOKEN"
@@ -97,6 +99,9 @@ Add the following bot token scopes: channels:history, channels:read, groups:hist
 Install the app in your workspace
 
 Step 2: Writing the Python script
+
+
+(Please replace "bot_token" with your actual tokens for the Slack bot token and "channel_id" with your actual channel id for the Slack channel).To run the code, open the python_slack.py file.
 ```python
 import slack_sdk
 
@@ -146,7 +151,7 @@ Before you can utilize the bot, make sure to add it to the desired channel via t
 
 ### Automatically extract business emails and send client communications using Python
 
-Code for doing this:
+To run the code, open the automatically_email.py file.:
 ``` python
 import os
 import smtplib
