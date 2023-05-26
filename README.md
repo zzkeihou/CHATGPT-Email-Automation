@@ -10,6 +10,7 @@
 </details>
 
 ## Overview
+This project is designed to automate response to Slack channel messages and manage client communication effectively. It utilizes the power of OpenAI's ChatGPT model and integrates with Slack to intelligently respond to messages. Moreover, it employs Python for efficient extraction of business emails and automates the process of sending communication emails to clients.
 ## Integrate ChatGPT within Slack
 Step 1: Create an app with Slack and obtain tokens
 
@@ -34,7 +35,7 @@ pip install openai
 pip install slack-bolt
 pip install slack-sdk
 ```
-Step 4: Writing the Code
+Step 4: Writing the Python script
 The following is a script which listens for mentions of your bot in a channel, then sends the text of the message to ChatGPT to generate a response, and finally sends the generated message back to the channel:
 ```python
 SLACK_BOT_TOKEN = "YOUR_TOKEN"
@@ -85,6 +86,8 @@ if __name__ == "__main__":
     SocketModeHandler(app, SLACK_APP_TOKEN).start()
 ```
 
+Step 5: Test out(see example)
+
 ## Integrate Python within Slack
 
 Step 1: Create a Slack App & Install It
@@ -93,7 +96,7 @@ Add the following bot token scopes: channels:history, channels:read, groups:hist
 
 Install the app in your workspace
 
-Step 2: Writing the Code
+Step 2: Writing the Python script
 ```python
 import slack_sdk
 
@@ -135,7 +138,10 @@ I’m XX XX from abc Corp. we are interested in your product. We like to get bas
 Thanks, XX
 
 
-https://github.com/zzkeihou/CHATGPT-Email-Automation/assets/116041838/780233dd-acb1-4d61-a922-14e959cd7762
+https://github.com/zzkeihou/CHATGPT-Email-Automation/assets/116041838/be22d40a-953b-4529-bf41-8dc94c93b5bd
+
+Before you can utilize the bot, make sure to add it to the desired channel via the integration tab. Once the bot is successfully integrated, you can call it to automatically generate business emails.
+
 
 
 ### Automatically extract business emails and send client communications using Python
@@ -171,6 +177,9 @@ with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
     smtp.login(email_sender, email_password)
     smtp.sendmail(email_sender, email_receiver, em.as_string()) 
 ```
+This script can be used to automate the process of sending emails. For instance, it can be used to send automated emails, reminders, or reports. 
+
+![WechatIMG47514](https://github.com/zzkeihou/CHATGPT-Email-Automation/assets/116041838/fa150195-2b65-4422-8628-a8c659d091ea)
 
 
 
