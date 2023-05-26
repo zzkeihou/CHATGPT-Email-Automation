@@ -123,6 +123,9 @@ Once you have your Slack App installed in your workspace and the Python script r
 
 
 ## Example
+
+### Ask the bot to generate a business email for communication with your client.
+
 Slack Channel: #sales 
 
 Post: 
@@ -130,3 +133,44 @@ Post:
 I’m XX XX from abc Corp. we are interested in your product. We like to get basic info. Then we like to schedule a demo. Kindly reach out to us at oooooo@oooooo.com 
 
 Thanks, XX
+
+
+https://github.com/zzkeihou/CHATGPT-Email-Automation/assets/116041838/780233dd-acb1-4d61-a922-14e959cd7762
+
+
+### Automatically extract business emails and send client communications using Python
+
+Code for doing this:
+``` python
+import os
+import smtplib
+import ssl
+from email.message import EmailMessage
+
+# Setup email account
+email_sender = 'sender@gmail.com'
+email_password = os.getenv('EMAIL_PASSWORD') # It's safer to load sensitive info as environment variable
+email_receiver = 'receiver@gmail.com'
+
+# Email subject/body
+subject = 'Basic Information'
+body = message['text']
+
+# Create EmailMessage object
+em = EmailMessage()
+em['From'] = email_sender
+em['To'] = email_receiver 
+em['Subject'] = subject
+em.set_content(body)
+
+# Create a secure SSL context
+context = ssl.create_default_context()
+
+# Send email
+with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
+    smtp.login(email_sender, email_password)
+    smtp.sendmail(email_sender, email_receiver, em.as_string()) 
+```
+
+
+
